@@ -1,31 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/AuthProvider';
+import TransactionForm from '../components/TransactionForm/TransactionForm';
+import BlockchainList from '../components/BlockchainList/BlockchainList';
+import { fetchNodes } from '../services/api-service';
+import NodePicker from '../components/NodePicker/NodePicker';
 
 const Dashboard: React.FC = () => {
   const { isAuthenticated } = useAuth();
+  const [nodes, setNodes] = useState([]);
+  const [dynamicPort, setDynamicPort] = useState('');
+
   console.log(isAuthenticated);
+
+  useEffect(() => {
+    getNodes();
+  }, []);
+
+  const getNodes = async () => {
+    try {
+      const fetchedNodes = await fetchNodes();
+      console.log(fetchedNodes);
+      setNodes(fetchedNodes);
+      if (fetchedNodes.length > 0) {
+        const firstNodeAddress = fetchedNodes[0].address;
+
+        setDynamicPort(firstNodeAddress);
+      }
+    } catch (err) {
+      console.error(`Error fetching nodes: ${err}`);
+    }
+  };
+
   return (
     <>
-      <h2>Dashboard</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error iure qui
-        accusantium doloribus, impedit corporis quia autem quidem et dolores
-        harum quis possimus, laudantium non ea in. Mollitia, vero doloremque
-        distinctio possimus, iste ea totam sint dolores unde id laboriosam. Ex
-        necessitatibus eaque quas assumenda debitis mollitia, atque aliquam
-        rerum id repellat nostrum animi illum aut optio quasi porro tempore
-        suscipit quia. Dolorum, libero tempora sed mollitia adipisci ullam
-        doloremque facere labore pariatur vitae natus recusandae ipsum saepe
-        harum architecto deleniti odit accusantium nihil culpa iste. In maxime
-        sequi explicabo laboriosam eum cupiditate, exercitationem eos ea,
-        voluptate blanditiis, illo veniam totam deleniti a voluptatem nostrum
-        ipsum? Quibusdam excepturi nisi natus consectetur id ipsa nesciunt eaque
-        ducimus quos delectus! Asperiores corrupti quaerat aperiam mollitia aut
-        nihil perspiciatis expedita officia quae. Similique deserunt adipisci
-        quam, corrupti quaerat quae facere magnam libero culpa nesciunt, minima,
-        dicta recusandae! Quia, voluptas accusantium? Reprehenderit,
-        consequuntur voluptatibus?
-      </p>
+      <h2>Transaction</h2>
+      <NodePicker
+        nodes={nodes}
+        setDynamicPort={setDynamicPort}
+      />
+      <TransactionForm />
+      <BlockchainList dynamicPort={dynamicPort} />
     </>
   );
 };
