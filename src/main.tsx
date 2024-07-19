@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './pages/LoginPage.tsx';
 import Root from './routes/Root/Root.tsx';
-import ErrorPage from './ErrorPage.tsx';
+import ErrorPage from './pages/ErrorPage.tsx';
 import RegisterPage from './pages/RegisterPage.tsx';
 import Index from './pages/Index.tsx';
 import PrivateRoute from './routes/PrivateRoute.tsx';

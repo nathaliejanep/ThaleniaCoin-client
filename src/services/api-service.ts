@@ -52,9 +52,9 @@ const addTransaction = async (
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
-  } catch (err) {
+  } catch (err: any) {
     console.error(`Error: ${err} while adding transaction.`);
-    return {};
+    return err.response.data.message;
   }
 };
 

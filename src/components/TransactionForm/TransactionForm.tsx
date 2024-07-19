@@ -12,9 +12,6 @@ const TransactionForm = ({ blockchain }: any) => {
   console.log('TOOKEN', token);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
 
     try {
       const addTx = await addTransaction({ recipient, amount }, 3000, token);

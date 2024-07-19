@@ -43,7 +43,6 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <h2>Login</h2>
       <Form onSubmit={(e) => handleLogin(e)}>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email</Form.Label>

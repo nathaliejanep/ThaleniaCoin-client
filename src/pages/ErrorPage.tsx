@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouteError } from 'react-router-dom';
-
+// TODO move file to pages
 const ErrorPage: React.FC = () => {
   const error = useRouteError();
   console.error(error);

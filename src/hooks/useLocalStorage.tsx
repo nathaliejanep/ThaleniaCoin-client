@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// TODO use this
+
 const useLocalStorage = (keyName: string, defaultValue: string | null) => {
   const initialize = () => {
     try {
