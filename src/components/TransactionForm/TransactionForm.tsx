@@ -9,7 +9,6 @@ const TransactionForm = ({ blockchain }: any) => {
   const [amount, setAmount] = useState<number>(0);
   const [error, setError] = useState('');
   const [token] = useLocalStorage('token', null);
-  console.log('TOOKEN', token);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

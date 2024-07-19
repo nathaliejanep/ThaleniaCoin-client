@@ -9,13 +9,16 @@ const Dashboard: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const [nodes, setNodes] = useState([]);
   const [dynamicPort, setDynamicPort] = useState('');
-
+  interface Node {
+    address: string;
+    port: number;
+  }
   console.log(isAuthenticated);
 
   useEffect(() => {
     getNodes();
   }, []);
-
+  console.log('nodes', nodes);
   const getNodes = async () => {
     try {
       const fetchedNodes = await fetchNodes();

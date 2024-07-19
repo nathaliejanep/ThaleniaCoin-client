@@ -10,7 +10,7 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [setToken] = useLocalStorage('token', null);
+  const [token, setToken] = useLocalStorage('token', null);
 
   const navigate = useNavigate();
   const { login } = useAuth();
